@@ -1,5 +1,8 @@
-name: 'Lint with lintrunner'
-description: 'Run lintrunner'
+name: 'Lint wiht lintrunner'
+description: 'Lint the repository with lintrunner'
+branding:
+  icon: check-circle
+  color: yellow
 inputs:
   publish_code_scanning:
     description: 'Whether to publish the sarif files to GitHub'
