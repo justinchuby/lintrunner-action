@@ -13,7 +13,7 @@ jobs:
     name: Test the action
     steps:
       - uses: actions/checkout@v3
-      - uses: justinchuby/lintrunner-action@v0.1
+      - uses: justinchuby/lintrunner-action@main
         with:
           publish_code_scanning: true
           verbose: false
