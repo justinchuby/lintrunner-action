@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  lintrunner:
+    runs-on: ubuntu-latest
+    name: Test the action
+    steps:
+      - uses: actions/checkout@v3
+      - uses: justinchuby/lintrunner-action@5a6e0f11f984caf5d02ef7798e0b9397d9570f49
