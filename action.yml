@@ -8,10 +8,10 @@ inputs:
     description: 'Whether to publish the sarif files to GitHub'
     required: false
     default: true
-  verbose:
-    description: 'Turn on verbose logging'
+  quiet:
+    description: 'Turn off verbose logging in lintrunner'
     required: false
-    default: true
+    default: false
 runs:
   using: "composite"
   steps:
@@ -27,7 +27,7 @@ runs:
       shell: bash
       run: |
         set +e
-        if ! lintrunner ${{ inputs.verbose == 'true' && '-v' || '' }} --force-color --all-files --tee-json=lint.json; then
+        if ! lintrunner ${{ inputs.quiet == 'true' && '' || '-v' }} --force-color --all-files --tee-json=lint.json; then
             echo ""
             echo -e "\e[1m\e[36mYou can reproduce these results locally by using \`lintrunner -m main\`.\e[0m"
             exit 1
