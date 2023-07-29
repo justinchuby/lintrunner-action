@@ -33,12 +33,13 @@ runs:
             exit 1
         fi
     - name: Produce SARIF
-      continue-on-error: ${{ inputs.publish_code_scanning == 'true' }}
+      if: always()
       shell: bash
       run: |
         python -m lintrunner_adapters to-sarif lint.json lintrunner.sarif
     - name: Upload SARIF file
-      continue-on-error: ${{ inputs.publish_code_scanning == 'true' }}
+      if: always()
+      continue-on-error: true
       uses: github/codeql-action/upload-sarif@v2
       with:
         # Path to SARIF file relative to the root of the repository
