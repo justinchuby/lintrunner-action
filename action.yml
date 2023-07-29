@@ -1,14 +1,18 @@
 name: 'Lint with lintrunner'
 description: 'Run lintrunner'
 inputs:
-  code_scanning:
+  publish_code_scanning:
     description: 'Whether to publish the sarif files to GitHub'
+    required: false
+    default: true
+  verbose:
+    description: 'Turn on verbose logging'
     required: false
     default: true
 runs:
   using: "composite"
   steps:
-    - name: Install dependencies
+    - name: Install lintrunner and lintrunner-adapters
       shell: bash
       run: |
         pip install --upgrade lintrunner lintrunner-adapters
@@ -16,22 +20,22 @@ runs:
       shell: bash
       run: |
         lintrunner init
-    - name: Run lintrunner on all files - Linux
+    - name: Run lintrunner on all files
       shell: bash
       run: |
         set +e
-        if ! lintrunner -v --force-color --all-files --tee-json=lint.json; then
+        if ! lintrunner ${{ inputs.verbose && '-v' || '' }} --force-color --all-files --tee-json=lint.json; then
             echo ""
             echo -e "\e[1m\e[36mYou can reproduce these results locally by using \`lintrunner -m main\`.\e[0m"
             exit 1
         fi
     - name: Produce SARIF
-      if: always()
+      if: always() && ${{ inputs.publish_code_scanning }}
       shell: bash
       run: |
         python -m lintrunner_adapters to-sarif lint.json lintrunner.sarif
     - name: Upload SARIF file
-      if: always()
+      if: always() && ${{ inputs.publish_code_scanning }}
       continue-on-error: true
       uses: github/codeql-action/upload-sarif@v2
       with:
