@@ -1,4 +1,4 @@
-name: 'Lint wiht lintrunner'
+name: 'Lint with lintrunner'
 description: 'Lint the repository with lintrunner'
 branding:
   icon: check-circle
