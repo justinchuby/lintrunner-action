@@ -12,4 +12,4 @@ jobs:
     name: Test the action
     steps:
       - uses: actions/checkout@v3
-      - uses: justinchuby/lintrunner-action@4f1caff075db8509d66097059a22deaded6844b5
+      - uses: justinchuby/lintrunner-action@5a6e0f11f984caf5d02ef7798e0b9397d9570f49
