@@ -15,7 +15,7 @@ runs:
     - name: Install lintrunner and lintrunner-adapters
       shell: bash
       run: |
-        pip install --upgrade lintrunner lintrunner-adapters
+        pip install --quiet lintrunner lintrunner-adapters
     - name: Lintrunner init
       shell: bash
       run: |
