@@ -1,0 +1,38 @@
+name: 'Lint with lintrunner'
+description: 'Run lintrunner'
+inputs:
+  code_scanning:
+    description: 'Whether to publish the sarif files to GitHub'
+    required: false
+    default: true
+outputs:
+runs:
+  using: "composite"
+  steps:
+    - name: Install dependencies
+      run: |
+        pip install --upgrade lintrunner lintrunner-adapters
+    - name: Lintrunner init
+      run: |
+        lintrunner init
+    - name: Run lintrunner on all files - Linux
+      run: |
+        set +e
+        if ! lintrunner -v --force-color --all-files --tee-json=lint.json; then
+            echo ""
+            echo -e "\e[1m\e[36mYou can reproduce these results locally by using \`lintrunner -m main\`.\e[0m"
+            exit 1
+        fi
+    - name: Produce SARIF
+      if: always()
+      run: |
+        python -m lintrunner_adapters to-sarif lint.json lintrunner.sarif
+    - name: Upload SARIF file
+      if: always()
+      continue-on-error: true
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        # Path to SARIF file relative to the root of the repository
+        sarif_file: lintrunner.sarif
+        category: lintrunner
+        checkout_path: ${{ github.workspace }}
