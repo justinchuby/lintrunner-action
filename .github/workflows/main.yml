@@ -16,4 +16,4 @@ jobs:
       - uses: justinchuby/lintrunner-action@main
         with:
           publish_code_scanning: true
-          verbose: false
+          quiet: true
