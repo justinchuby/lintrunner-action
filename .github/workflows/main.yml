@@ -13,3 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: justinchuby/lintrunner-action@v0.1
+        with:
+          publish_code_scanning: true
+          verbose: false
