@@ -1,0 +1,17 @@
+# Configuration for lintrunner https://github.com/suo/lintrunner
+# With support from https://github.com/justinchuby/lintrunner-adapters
+
+[[linter]]
+code = 'NEWLINE'
+include_patterns = ['**']
+exclude_patterns = []
+command = [
+    'python',
+    '-m',
+    'lintrunner_adapters',
+    'run',
+    'newlines_linter',
+    '--',
+    '@{{PATHSFILE}}',
+]
+is_formatter = true
