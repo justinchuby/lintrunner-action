@@ -60,6 +60,6 @@ Visit https://github.com/suo/lintrunner for a complete setup guide and https://g
 
 ### Example configs
 
-- https://github.com/microsoft/onnxscript/blob/main/.lintrunner.toml
-- https://github.com/pytorch/pytorch/blob/main/.lintrunner.toml
 - https://github.com/justinchuby/lintrunner-adapters/blob/main/.lintrunner.toml
+- https://github.com/pytorch/pytorch/blob/main/.lintrunner.toml
+- https://github.com/microsoft/onnxscript/blob/main/.lintrunner.toml
