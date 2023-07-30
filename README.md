@@ -22,7 +22,7 @@ steps:
 
 ## Set up lintrunner
 
-To set up `lintrunner`, create a `.lintrunner.toml` cinfiguration file in the root of the repository. An example linter configuration looks like:
+To set up `lintrunner`, create a `.lintrunner.toml` configuration file in the root of the repository. An example linter configuration looks like:
 
 ```toml
 merge_base_with = 'main'
